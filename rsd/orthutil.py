@@ -37,7 +37,7 @@ PA      502025  521010  0.2     1e-20
 import io
 
 
-def orthologsFromStreamGen(handle, version=-1):
+def orthologs_from_stream_gen(handle, version=-1):
     '''
     handle: a stream from which lines containing orthologs are read.
     version: 1 = the old way RSD serialized orthologs: each line has a subject sequence id, query sequence id, paml distance.
@@ -53,7 +53,7 @@ def orthologsFromStreamGen(handle, version=-1):
             yield id1, id2, dist
 
 
-def orthologsToStream(orthologs, handle, version=-1):
+def orthologs_to_stream(orthologs, handle, version=-1):
     '''
     orthologs: an iterable of tuples of (query_id, subject_id, distance)
     handle: a stream from which lines containing orthologs are read.
@@ -79,11 +79,11 @@ def orthologsToStream(orthologs, handle, version=-1):
 # orthologs: a list of query id, subject id, and distance.
 
 
-def orthDatasFromFile(path):
+def orth_datas_from_file(path):
     return list(orthDatasFromFileGen(path))
 
 
-def orthDatasFromFileGen(path):
+def orth_datas_from_file_gen(path):
     '''
     path: contains zero or more orthDatas.  must exist.
     yields: every orthData, a pair of params and orthologs, in path.
@@ -93,7 +93,7 @@ def orthDatasFromFileGen(path):
             yield orthData
 
 
-def orthDatasFromFilesGen(paths):
+def orth_datas_from_files_gen(paths):
     '''
     paths: a list of file paths containing orthDatas.
     yields: every orthData in every file in paths
@@ -103,7 +103,7 @@ def orthDatasFromFilesGen(paths):
             yield orthData
 
 
-def orthDatasToFile(orthDatas, path, mode='w'):
+def orth_datas_to_file(orthDatas, path, mode='w'):
     '''
     orthDatas: a list of rsd orthDatas. orthData is a pair of params and orthologs
     path: where to save the orthDatas
@@ -123,7 +123,7 @@ def orthDatasToFile(orthDatas, path, mode='w'):
         orthDatasToStream(orthDatas, fh)
 
 
-def orthDatasToStr(orthDatas):
+def orth_datas_to_str(orthDatas):
     '''
     orthDatas: a list of rsd orthDatas. orthData is a pair of params and orthologs
     serialize orthDatas as a string.
@@ -134,7 +134,7 @@ def orthDatasToStr(orthDatas):
         return handle.getvalue()
     
 
-def orthDatasToStream(orthDatas, handle):
+def orth_datas_to_stream(orthDatas, handle):
     '''
     orthDatas: a list of rsd orthDatas. orthData is a pair of params and orthologs
     handle: an open io stream (e.g. a filehandle or a StringIO) to which the orthDatas are written
@@ -148,7 +148,7 @@ def orthDatasToStream(orthDatas, handle):
     return handle
 
 
-def orthDatasFromStreamGen(handle):
+def orth_datas_from_stream_gen(handle):
     '''
     handle: an open io stream (e.g. a filehandle or a StringIO) from which orthDatas are read and yielded
     yields: every orthData, a pair of params and orthologs, in path.

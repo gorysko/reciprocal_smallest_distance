@@ -46,7 +46,7 @@ class NestedTempDir(object):
             shutil.rmtree(self.path)
 
 
-def makeTempFile(dir=DEFAULT_TMP_DIR, nesting=DEFAULT_NESTED_LEVELS, suffix='', prefix=DEFAULT_TMP_PREFIX, dirsMode=DEFAULT_DIRS_MODE, dirsUseUmask=False, mode='w+b'):
+def make_temp_file(dir=DEFAULT_TMP_DIR, nesting=DEFAULT_NESTED_LEVELS, suffix='', prefix=DEFAULT_TMP_PREFIX, dirsMode=DEFAULT_DIRS_MODE, dirsUseUmask=False, mode='w+b'):
     '''
     Creates a unique file under dir and any intermediate directories that do not yet exist.
     The caller is responsible for deleting the file.
@@ -58,7 +58,7 @@ def makeTempFile(dir=DEFAULT_TMP_DIR, nesting=DEFAULT_NESTED_LEVELS, suffix='', 
     return open(path, mode=mode)
 
 
-def makeTempDir(dir=DEFAULT_TMP_DIR, nesting=DEFAULT_NESTED_LEVELS, suffix='', prefix=DEFAULT_TMP_PREFIX, dirsMode=DEFAULT_DIRS_MODE, dirsUseUmask=False):
+def make_temp_dir(dir=DEFAULT_TMP_DIR, nesting=DEFAULT_NESTED_LEVELS, suffix='', prefix=DEFAULT_TMP_PREFIX, dirsMode=DEFAULT_DIRS_MODE, dirsUseUmask=False):
     '''
     dirsMode: mode/permissions of created nested directories.  e.g. 0775.
     creates a unique directory nested under dir and any intermediate dirs that do not yet exist.
@@ -70,7 +70,7 @@ def makeTempDir(dir=DEFAULT_TMP_DIR, nesting=DEFAULT_NESTED_LEVELS, suffix='', p
     return path
 
 
-def makeTempPath(dir=DEFAULT_TMP_DIR, nesting=DEFAULT_NESTED_LEVELS, suffix='', prefix=DEFAULT_TMP_PREFIX, dirsMode=DEFAULT_DIRS_MODE, dirsUseUmask=False):
+def make_temp_path(dir=DEFAULT_TMP_DIR, nesting=DEFAULT_NESTED_LEVELS, suffix='', prefix=DEFAULT_TMP_PREFIX, dirsMode=DEFAULT_DIRS_MODE, dirsUseUmask=False):
     '''
     Returns: absolute path to a unique name, nested under the tmp dir.  This name has not yet been created as a file or dir.
     '''
@@ -79,7 +79,7 @@ def makeTempPath(dir=DEFAULT_TMP_DIR, nesting=DEFAULT_NESTED_LEVELS, suffix='', 
     return path
 
 
-def makeNestedPath(name, dir=DEFAULT_TMP_DIR, nesting=DEFAULT_NESTED_LEVELS, makeDirs=True, dirsMode=DEFAULT_DIRS_MODE, dirsUseUmask=False):
+def make_nested_path(name, dir=DEFAULT_TMP_DIR, nesting=DEFAULT_NESTED_LEVELS, makeDirs=True, dirsMode=DEFAULT_DIRS_MODE, dirsUseUmask=False):
     '''
     name: basename of file or dir to nest.  should not end with a slash.  E.g. not 'foo/'.
     nesting: between 0 and 20.  Useful for keeping the number of files in a temp dir small.
@@ -99,7 +99,7 @@ def makeNestedPath(name, dir=DEFAULT_TMP_DIR, nesting=DEFAULT_NESTED_LEVELS, mak
     return path
 
 
-def makeNestedSeedDir(seed, dir=DEFAULT_TMP_DIR, nesting=DEFAULT_NESTED_LEVELS, makeDirs=True, dirsMode=DEFAULT_DIRS_MODE, dirsUseUmask=False):
+def make_nested_seed_dir(seed, dir=DEFAULT_TMP_DIR, nesting=DEFAULT_NESTED_LEVELS, makeDirs=True, dirsMode=DEFAULT_DIRS_MODE, dirsUseUmask=False):
     '''
     seed: basename of file or dir to nest.  should not end with a slash.  E.g. not 'foo/'.
     nesting: between 0 and 20.  Useful for keeping the number of files in a temp dir small.
@@ -127,7 +127,7 @@ def makeNestedSeedDir(seed, dir=DEFAULT_TMP_DIR, nesting=DEFAULT_NESTED_LEVELS, 
     return os.path.abspath(path)
 
 
-def getNestedPath(name, dir=DEFAULT_TMP_DIR, nesting=DEFAULT_NESTED_LEVELS):
+def get_nested_path(name, dir=DEFAULT_TMP_DIR, nesting=DEFAULT_NESTED_LEVELS):
     '''
     name: basename of file or dir to nest.  should not end with a slash.  E.g. not 'foo/'.
     Useful for checking if name exists, nested within dir, without creating any directories.
@@ -141,7 +141,7 @@ def getNestedPath(name, dir=DEFAULT_TMP_DIR, nesting=DEFAULT_NESTED_LEVELS):
     return path
 
 
-def getNestedSeedDir(seed, dir=DEFAULT_TMP_DIR, nesting=DEFAULT_NESTED_LEVELS):
+def get_nested_seed_dir(seed, dir=DEFAULT_TMP_DIR, nesting=DEFAULT_NESTED_LEVELS):
     '''
     returns: absolute path to nested seed dir
     '''
@@ -149,7 +149,7 @@ def getNestedSeedDir(seed, dir=DEFAULT_TMP_DIR, nesting=DEFAULT_NESTED_LEVELS):
     return os.path.abspath(os.path.join(dir, *components))
 
     
-def _getNestedComponents(seed, nesting=DEFAULT_NESTED_LEVELS):
+def _get_nested_components(seed, nesting=DEFAULT_NESTED_LEVELS):
     '''for a given seed, returns a list of path components the seed should be nested under.  e.g ['a1', '6f']'''
     # 40 char hexidecimal string, so maximum of 20 2-char nested dir levels.
     assert nesting >= 0
